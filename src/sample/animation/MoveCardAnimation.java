@@ -3,7 +3,6 @@ package sample.animation;
 import javafx.animation.*;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.scene.Parent;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
@@ -32,7 +31,7 @@ public class MoveCardAnimation {
         this.moveLayer = (Pane) field.lookup("#moveLayer");
         this.cardSlot1 = (ImageView) field.lookup("#cardSlot1");
         initCardBack();
-        initTransition();
+        play();
     }
 
     private void initCardBack() {
@@ -45,7 +44,7 @@ public class MoveCardAnimation {
     }
 
 
-    public void initTransition() {
+    public void play() {
         SequentialTransition moveRotateFlip = new SequentialTransition(this.cardView, moveRotate(), flipCardBack(), flipCardFace());
         moveRotateFlip.setCycleCount(10);
         moveRotateFlip.play();
