@@ -22,7 +22,7 @@ public class SingleCardMoveBuilder extends AbstractAnimationBuilder {
 
     private ImageView deck;
     private ImageView cardSlot;
-    private Pane moveLayer;
+    private Pane pane;
 
     private ImageView cardView;
 
@@ -31,7 +31,8 @@ public class SingleCardMoveBuilder extends AbstractAnimationBuilder {
         this.cardView = new ImageView(CARD_BACK_URL);
         this.cardView.setFitWidth(this.deck.getBoundsInParent().getWidth());
         this.cardView.setFitHeight(this.deck.getBoundsInParent().getHeight());
-        this.moveLayer.getChildren().add(this.cardView);
+        this.cardView.sceneToLocal(rearrangeX(this.deck), rearrangeY(this.deck));
+        this.pane.getChildren().add(this.cardView);
         this.cardView.toFront();
 
     }
@@ -46,8 +47,8 @@ public class SingleCardMoveBuilder extends AbstractAnimationBuilder {
         return this;
     }
 
-    public SingleCardMoveBuilder overPane(Pane moveLayer) {
-        this.moveLayer = moveLayer;
+    public SingleCardMoveBuilder overPane(Pane pane) {
+        this.pane = pane;
         return this;
     }
 

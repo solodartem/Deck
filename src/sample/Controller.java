@@ -43,6 +43,6 @@ public class Controller implements Initializable {
     }
 
     public void playCardAnimation() {
-        new FiveCardMoveAnimation(this.deck, this.cardSlots, this.moveLayer).play();
+        new FiveCardMoveAnimation(this.deck, this.cardSlots, this.floor).play();
     }
 }
