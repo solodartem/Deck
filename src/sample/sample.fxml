@@ -19,11 +19,11 @@
                 <Insets bottom="120" left="120" right="120" top="120" />
             </padding>
             <children>
-                <ImageView fitWidth="100" preserveRatio="true" styleClass="cardBack"  id="cardSlot1"/>
-                <ImageView fitWidth="100" preserveRatio="true" styleClass="cardBack" />
-                <ImageView fitWidth="100" preserveRatio="true" styleClass="cardBack" />
-                <ImageView fitWidth="100" preserveRatio="true" styleClass="cardBack" />
-                <ImageView fitWidth="100" preserveRatio="true" styleClass="cardBack" />
+                <ImageView fx:id="cardSlot1" fitWidth="100" preserveRatio="true" styleClass="cardBack"/>
+                <ImageView fx:id="cardSlot2" fitWidth="100" preserveRatio="true" styleClass="cardBack"/>
+                <ImageView fx:id="cardSlot3" fitWidth="100" preserveRatio="true" styleClass="cardBack"/>
+                <ImageView fx:id="cardSlot4" fitWidth="100" preserveRatio="true" styleClass="cardBack"/>
+                <ImageView fx:id="cardSlot5" fitWidth="100" preserveRatio="true" styleClass="cardBack"/>
             </children>
         </HBox>
         <StackPane fx:id="moveLayer"/>
