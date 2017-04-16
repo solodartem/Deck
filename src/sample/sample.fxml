@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="floor" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
+    <padding>
+        <Insets bottom="20" left="20" right="20" top="20" />
+    </padding>
+    <children>
+        <HBox fx:id="field" alignment="CENTER" AnchorPane.leftAnchor="4.0" AnchorPane.rightAnchor="4.0" AnchorPane.topAnchor="0.0">
+            <children>
+                <ImageView fx:id="deck" fitWidth="100" preserveRatio="true" styleClass="cardBack" />
+            </children>
+        </HBox>
+        <HBox fx:id="pokerTable" spacing="20" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="4.0" AnchorPane.rightAnchor="4.0" AnchorPane.topAnchor="140.0">
+            <padding>
+                <Insets bottom="120" left="120" right="120" top="120" />
+            </padding>
+            <children>
+                <ImageView fitWidth="100" preserveRatio="true" styleClass="cardBack"  id="cardSlot1"/>
+                <ImageView fitWidth="100" preserveRatio="true" styleClass="cardBack" />
+                <ImageView fitWidth="100" preserveRatio="true" styleClass="cardBack" />
+                <ImageView fitWidth="100" preserveRatio="true" styleClass="cardBack" />
+                <ImageView fitWidth="100" preserveRatio="true" styleClass="cardBack" />
+            </children>
+        </HBox>
+        <StackPane fx:id="moveLayer"/>
+        </children>
+</AnchorPane>

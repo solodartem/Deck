@@ -1,0 +1,19 @@
+#floor{
+    -fx-background-color: #371d18;
+}
+
+#pokerTable{
+    -fx-background-image: url("../resources/img/pokertable.png");
+    -fx-background-repeat: stretch;
+   /* -fx-background-size: 900 506;
+   */ -fx-background-position: center center;
+    -fx-background-size: cover;
+}
+
+#deck {
+    -fx-image: url("../resources/img/back_side.png");
+}
+.cardBack {
+    -fx-image: url("../resources/img/back_side.png");
+    -fx-background-repeat: stretch;
+}

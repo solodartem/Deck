@@ -1,0 +1,21 @@
+#floor{
+    -fx-background-color: #371d18;
+}
+
+#pokerTable{
+    -fx-background-image: url("../resources/img/pokertable.png");
+    -fx-min-height: 132px;
+    -fx-min-width: 128px;
+    -fx-background-size: stretch;
+    -fx-background-repeat: no-repeat;
+    -fx-background-color:transparent;
+    -fx-background-position: center 8px;
+}
+
+#deck{
+    -fx-background-image: url("../resources/img/back_side.png");
+    -fx-background-color:transparent;
+    -fx-opacity: 100%;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: top left;
+}
