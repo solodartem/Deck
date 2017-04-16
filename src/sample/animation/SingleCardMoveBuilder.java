@@ -5,7 +5,6 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.Pane;
 import javafx.scene.shape.Line;
 import javafx.scene.transform.Rotate;
 import javafx.util.Duration;
@@ -22,20 +21,8 @@ public class SingleCardMoveBuilder extends AbstractAnimationBuilder {
 
     private ImageView deck;
     private ImageView cardSlot;
-    private Pane pane;
 
-    private ImageView cardView;
-
-    private void createControllers() {
-        // init card back
-        this.cardView = new ImageView(CARD_BACK_URL);
-        this.cardView.setFitWidth(this.deck.getBoundsInParent().getWidth());
-        this.cardView.setFitHeight(this.deck.getBoundsInParent().getHeight());
-        this.cardView.sceneToLocal(rearrangeX(this.deck), rearrangeY(this.deck));
-        this.pane.getChildren().add(this.cardView);
-        this.cardView.toFront();
-
-    }
+    private ImageView node;
 
     public SingleCardMoveBuilder fromDeck(ImageView deck) {
         this.deck = deck;
@@ -47,19 +34,18 @@ public class SingleCardMoveBuilder extends AbstractAnimationBuilder {
         return this;
     }
 
-    public SingleCardMoveBuilder overPane(Pane pane) {
-        this.pane = pane;
+    public SingleCardMoveBuilder withNode(ImageView node) {
+        this.node = node;
         return this;
     }
 
     public Animation build() {
-        createControllers();
-        SequentialTransition moveRotateFlip = new SequentialTransition(this.cardView, moveRotate(), flipCardBack(), flipCardFace());
+        SequentialTransition moveRotateFlip = new SequentialTransition(this.node, moveRotate(), flipCardBack(), flipCardFace());
         return moveRotateFlip;
     }
 
     private ParallelTransition moveRotate() {
-        ParallelTransition moveRotate = new ParallelTransition(this.cardView, move(), rotate());
+        ParallelTransition moveRotate = new ParallelTransition(this.node, move(), rotate());
         return moveRotate;
     }
 
@@ -72,7 +58,7 @@ public class SingleCardMoveBuilder extends AbstractAnimationBuilder {
     }
 
     private Timeline rotate() {
-        Rotate rotationTransform = new Rotate(0,50,50);
+        Rotate rotationTransform = new Rotate(0, 50, 50);
         final Timeline rotationAnimation = new Timeline();
         rotationAnimation.getKeyFrames()
                 .add(
@@ -84,21 +70,21 @@ public class SingleCardMoveBuilder extends AbstractAnimationBuilder {
                                 )
                         )
                 );
-        this.cardView.getTransforms().addAll(rotationTransform);
+        this.node.getTransforms().addAll(rotationTransform);
         return rotationAnimation;
     }
 
     private Animation flipCardBack() {
         RotateTransition flipCardBack = new RotateTransition();
-        flipCardBack.setNode(this.cardView);
-        flipCardBack.setDuration(new Duration(DURATION / 4));
+        flipCardBack.setNode(this.node);
+        flipCardBack.setDuration(new Duration(DURATION / 2));
         flipCardBack.setAxis(Rotate.Y_AXIS);
         flipCardBack.setFromAngle(0.0);
         flipCardBack.setToAngle(90.0);
         flipCardBack.setOnFinished(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                SingleCardMoveBuilder.this.cardView.setImage(new Image(CARD_FACE_URL));
+                SingleCardMoveBuilder.this.node.setImage(new Image(CARD_FACE_URL));
             }
         });
         return flipCardBack;
@@ -106,11 +92,18 @@ public class SingleCardMoveBuilder extends AbstractAnimationBuilder {
 
     private Animation flipCardFace() {
         RotateTransition flipCardBack = new RotateTransition();
-        flipCardBack.setNode(this.cardView);
-        flipCardBack.setDuration(new Duration(DURATION / 4));
+        flipCardBack.setNode(this.node);
+        flipCardBack.setDuration(new Duration(DURATION / 2));
         flipCardBack.setAxis(Rotate.Y_AXIS);
         flipCardBack.setFromAngle(90);
         flipCardBack.setToAngle(0);
+        flipCardBack.setOnFinished(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                SingleCardMoveBuilder.this.cardSlot.setImage(new Image(CARD_FACE_URL));
+                SingleCardMoveBuilder.this.node.setImage(new Image(CARD_BACK_URL));
+            }
+        });
         return flipCardBack;
     }
 
