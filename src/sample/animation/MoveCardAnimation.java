@@ -92,17 +92,17 @@ public class MoveCardAnimation {
     private Animation move() {
         PathTransition pathTransition = new PathTransition();
         pathTransition.setDuration(Duration.seconds(2));
-        pathTransition.setPath(new Line(locateFromX(this.deck, this.deck.getParent()), locateFromY(this.deck, this.deck.getParent()),
-                locateFromX(this.cardSlot1, this.deck.getParent()), locateFromY(this.cardSlot1, this.cardSlot1.getParent())));
+        pathTransition.setPath(new Line(locateFromX(this.deck), locateFromY(this.deck),
+                locateFromX(this.cardSlot1), locateFromY(this.cardSlot1)));
         return pathTransition;
     }
 
-    private double locateFromX(ImageView imageView, Parent parent) {
-        return parent.localToScene(imageView.getLayoutX(), imageView.getY()).getX() + imageView.getBoundsInParent().getWidth() / 2;
+    private double locateFromX(ImageView imageView) {
+        return imageView.getParent().localToScene(imageView.getLayoutX(), imageView.getLayoutY()).getX() + imageView.getBoundsInParent().getWidth() / 2;
     }
 
-    private double locateFromY(ImageView imageView, Parent parent) {
-        return parent.localToScene(imageView.getLayoutX(), imageView.getY()).getY() + imageView.getBoundsInParent().getHeight() / 2;
+    private double locateFromY(ImageView imageView) {
+        return imageView.getParent().localToScene(imageView.getLayoutX(), imageView.getLayoutY()).getY() + imageView.getBoundsInParent().getHeight() / 2;
     }
 
 }
