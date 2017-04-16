@@ -53,27 +53,24 @@ public class SingleCardMoveBuilder extends AbstractAnimationBuilder {
 
     public Animation build() {
         createControllers();
-
         SequentialTransition moveRotateFlip = new SequentialTransition(this.cardView, moveRotate(), flipCardBack(), flipCardFace());
-        moveRotateFlip.play();
         return moveRotateFlip;
     }
 
     private ParallelTransition moveRotate() {
-        rotate();
-        ParallelTransition moveRotate = new ParallelTransition(this.cardView, move());
+        ParallelTransition moveRotate = new ParallelTransition(this.cardView, move(), rotate());
         return moveRotate;
     }
 
     private Animation move() {
         PathTransition pathTransition = new PathTransition();
         pathTransition.setDuration(Duration.seconds(2));
-        pathTransition.setPath(new Line(rearangeX(this.deck), rearangeY(this.deck),
-                rearangeX(this.cardSlot), rearangeY(this.cardSlot)));
+        pathTransition.setPath(new Line(rearrangeX(this.deck), rearrangeY(this.deck),
+                rearrangeX(this.cardSlot), rearrangeY(this.cardSlot)));
         return pathTransition;
     }
 
-    private void rotate() {
+    private Timeline rotate() {
         Rotate rotationTransform = new Rotate(0,50,50);
         final Timeline rotationAnimation = new Timeline();
         rotationAnimation.getKeyFrames()
@@ -86,8 +83,8 @@ public class SingleCardMoveBuilder extends AbstractAnimationBuilder {
                                 )
                         )
                 );
-        rotationAnimation.play();
         this.cardView.getTransforms().addAll(rotationTransform);
+        return rotationAnimation;
     }
 
     private Animation flipCardBack() {
@@ -113,12 +110,6 @@ public class SingleCardMoveBuilder extends AbstractAnimationBuilder {
         flipCardBack.setAxis(Rotate.Y_AXIS);
         flipCardBack.setFromAngle(90);
         flipCardBack.setToAngle(0);
-        flipCardBack.setOnFinished(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                SingleCardMoveBuilder.this.cardView.setImage(new Image(CARD_BACK_URL));
-            }
-        });
         return flipCardBack;
     }
 

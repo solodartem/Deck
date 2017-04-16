@@ -7,11 +7,11 @@ import javafx.scene.image.ImageView;
  */
 public abstract class AbstractAnimationBuilder {
 
-    protected double rearangeX(ImageView imageView) {
+    protected double rearrangeX(ImageView imageView) {
         return imageView.getParent().localToScene(imageView.getLayoutX(), imageView.getLayoutY()).getX() + imageView.getBoundsInParent().getWidth() / 2;
     }
 
-    protected double rearangeY(ImageView imageView) {
+    protected double rearrangeY(ImageView imageView) {
         return imageView.getParent().localToScene(imageView.getLayoutX(), imageView.getLayoutY()).getY() + imageView.getBoundsInParent().getHeight() / 2;
     }
 }
