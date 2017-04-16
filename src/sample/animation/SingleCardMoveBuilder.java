@@ -14,13 +14,14 @@ import javafx.util.Duration;
  */
 public class SingleCardMoveBuilder extends AbstractAnimationBuilder {
 
-    public static final String CARD_FACE_URL = "file:resources/../resources/img/2_of_spades.png";
+    public static final String CARD_FACE_URL_TEMPLATE = "file:resources/../resources/img/%s.png";
     public static final String CARD_BACK_URL = "file:resources/../resources/img/back_side.png";
 
     public static final float DURATION = 2000;
 
     private ImageView deck;
     private ImageView cardSlot;
+    private String card;
 
     private ImageView node;
 
@@ -36,6 +37,11 @@ public class SingleCardMoveBuilder extends AbstractAnimationBuilder {
 
     public SingleCardMoveBuilder withNode(ImageView node) {
         this.node = node;
+        return this;
+    }
+
+    public SingleCardMoveBuilder usingCard(String card){
+        this.card = card;
         return this;
     }
 
@@ -84,7 +90,7 @@ public class SingleCardMoveBuilder extends AbstractAnimationBuilder {
         flipCardBack.setOnFinished(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                SingleCardMoveBuilder.this.node.setImage(new Image(CARD_FACE_URL));
+                SingleCardMoveBuilder.this.node.setImage(loadCardFaceImage());
             }
         });
         return flipCardBack;
@@ -100,11 +106,14 @@ public class SingleCardMoveBuilder extends AbstractAnimationBuilder {
         flipCardBack.setOnFinished(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                SingleCardMoveBuilder.this.cardSlot.setImage(new Image(CARD_FACE_URL));
+                SingleCardMoveBuilder.this.cardSlot.setImage(loadCardFaceImage());
                 SingleCardMoveBuilder.this.node.setImage(new Image(CARD_BACK_URL));
             }
         });
         return flipCardBack;
     }
 
+    private Image loadCardFaceImage() {
+        return new Image(String.format(CARD_FACE_URL_TEMPLATE, this.card));
+    }
 }

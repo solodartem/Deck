@@ -15,12 +15,13 @@ public class FiveCardMoveAnimation {
 
     private SequentialTransition st = new SequentialTransition();
     private ImageView node;
+    private DeckModel deckModel = new DeckModel();
 
     public FiveCardMoveAnimation(ImageView deck, ImageView[] cardsSlots, Pane moveLayer) {
 
         iniNode(deck, moveLayer);
         for (ImageView cardSlot : cardsSlots) {
-            st.getChildren().add(new SingleCardMoveBuilder().fromDeck(deck).toSlot(cardSlot).withNode(this.node).build());
+            st.getChildren().add(new SingleCardMoveBuilder().fromDeck(deck).toSlot(cardSlot).usingCard(this.deckModel.popRandomCard()).withNode(this.node).build());
         }
         st.setOnFinished(new EventHandler<ActionEvent>() {
             @Override

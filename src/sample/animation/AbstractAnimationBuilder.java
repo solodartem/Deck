@@ -14,4 +14,5 @@ public abstract class AbstractAnimationBuilder {
     protected double rearrangeY(ImageView imageView) {
         return imageView.getParent().localToScene(imageView.getLayoutX(), imageView.getLayoutY()).getY() + imageView.getBoundsInParent().getHeight() / 2;
     }
+
 }
