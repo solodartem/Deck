@@ -1,4 +1,4 @@
-package sample.animation;
+package com.asolod.test.poker.animation;
 
 import javafx.animation.*;
 import javafx.event.ActionEvent;

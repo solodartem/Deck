@@ -1,4 +1,4 @@
-package sample.animation;
+package com.asolod.test.poker.model;
 
 import java.util.*;
 

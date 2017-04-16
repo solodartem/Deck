@@ -1,5 +1,6 @@
-package sample;
+package com.asolod.test.poker;
 
+import com.asolod.test.poker.controller.MainStageController;
 import javafx.application.Application;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
@@ -15,7 +16,7 @@ public class Main extends Application {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("sample.fxml"));
         Parent root = loader.load();
 
-        primaryStage.setTitle("Deck test");
+        primaryStage.setTitle("Poker test");
         primaryStage.setScene(new Scene(root));
         root.getStylesheets().add("file:resources/spreadsheet.css");
 
@@ -23,7 +24,7 @@ public class Main extends Application {
         primaryStage.addEventHandler(WindowEvent.WINDOW_SHOWN, new EventHandler<WindowEvent>() {
             @Override
             public void handle(WindowEvent window) {
-               loader.<Controller>getController().playCardAnimation();
+               loader.<MainStageController>getController().playCardAnimation();
             }
         });
 

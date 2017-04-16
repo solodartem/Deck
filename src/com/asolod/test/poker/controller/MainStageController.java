@@ -1,15 +1,15 @@
-package sample;
+package com.asolod.test.poker.controller;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
-import sample.animation.FiveCardMoveAnimation;
+import com.asolod.test.poker.animation.FiveCardMoveAnimation;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class Controller implements Initializable {
+public class MainStageController implements Initializable {
 
     @FXML
     private ImageView cardSlot1;

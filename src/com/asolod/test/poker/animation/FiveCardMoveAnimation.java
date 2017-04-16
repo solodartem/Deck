@@ -1,12 +1,13 @@
-package sample.animation;
+package com.asolod.test.poker.animation;
 
+import com.asolod.test.poker.model.DeckModel;
 import javafx.animation.SequentialTransition;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 
-import static sample.animation.SingleCardMoveBuilder.CARD_BACK_URL;
+import static com.asolod.test.poker.animation.SingleCardMoveBuilder.CARD_BACK_URL;
 
 /**
  * Created by asolod on 16.04.17.
