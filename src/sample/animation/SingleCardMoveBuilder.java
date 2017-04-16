@@ -51,7 +51,7 @@ public class SingleCardMoveBuilder extends AbstractAnimationBuilder {
 
     private Animation move() {
         PathTransition pathTransition = new PathTransition();
-        pathTransition.setDuration(Duration.seconds(2));
+        pathTransition.setDuration(new Duration(DURATION/2));
         pathTransition.setPath(new Line(rearrangeX(this.deck), rearrangeY(this.deck),
                 rearrangeX(this.cardSlot), rearrangeY(this.cardSlot)));
         return pathTransition;
@@ -63,7 +63,7 @@ public class SingleCardMoveBuilder extends AbstractAnimationBuilder {
         rotationAnimation.getKeyFrames()
                 .add(
                         new KeyFrame(
-                                Duration.seconds(2),
+                                new Duration(DURATION/2),
                                 new KeyValue(
                                         rotationTransform.angleProperty(),
                                         360
@@ -77,7 +77,7 @@ public class SingleCardMoveBuilder extends AbstractAnimationBuilder {
     private Animation flipCardBack() {
         RotateTransition flipCardBack = new RotateTransition();
         flipCardBack.setNode(this.node);
-        flipCardBack.setDuration(new Duration(DURATION / 2));
+        flipCardBack.setDuration(new Duration(DURATION / 4));
         flipCardBack.setAxis(Rotate.Y_AXIS);
         flipCardBack.setFromAngle(0.0);
         flipCardBack.setToAngle(90.0);
@@ -93,7 +93,7 @@ public class SingleCardMoveBuilder extends AbstractAnimationBuilder {
     private Animation flipCardFace() {
         RotateTransition flipCardBack = new RotateTransition();
         flipCardBack.setNode(this.node);
-        flipCardBack.setDuration(new Duration(DURATION / 2));
+        flipCardBack.setDuration(new Duration(DURATION / 4));
         flipCardBack.setAxis(Rotate.Y_AXIS);
         flipCardBack.setFromAngle(90);
         flipCardBack.setToAngle(0);
