@@ -2,7 +2,6 @@ package com.asolod.test.poker;
 
 import com.asolod.test.poker.controller.MainStageController;
 import javafx.application.Application;
-import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -18,7 +17,7 @@ public class Main extends Application {
 
         primaryStage.setTitle("Poker test");
         primaryStage.setScene(new Scene(root));
-        root.getStylesheets().add("file:resources/spreadsheet.css");
+        root.getStylesheets().add(getClass().getClassLoader().getResource("resources/spreadsheet.css").toExternalForm());
 
 
         primaryStage.addEventHandler(WindowEvent.WINDOW_SHOWN, window -> loader.<MainStageController>getController().cardAnimationPlay());

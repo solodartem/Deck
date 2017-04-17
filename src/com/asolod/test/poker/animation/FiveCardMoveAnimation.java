@@ -6,6 +6,8 @@ import javafx.animation.SequentialTransition;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 
+import java.io.File;
+
 /**
  * Created by asolod on 16.04.17.
  */
