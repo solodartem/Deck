@@ -1,60 +1,70 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<project name="testerfx" default="default" basedir="." xmlns:fx="javafx:com.sun.javafx.tools.ant">
+<?xml version="1.0" encoding="UTF-8" ?>
 
-  <property name="java.home" value="/usr/lib/jvm/java-8-oracle"/>
-  <property name="source.dir" value="src"/>
-  <property name="out.dir" value="build"/>
-  <property name="out.dir.classes" value="${out.dir}/classes" />
-  <property name="out.dir.dist" value="${out.dir}/dist"/>
-  <property name="app.jar.name" value="TesterFX.jar"/>
+<project name="JavaFX Hello World Example" default="default" basedir="."
+         xmlns:fx="javafx:com.sun.javafx.tools.ant">
 
-  <path id="classpath">
-    <fileset dir="${java.home}/lib" includes="**/*.jar"/>
-  </path>
+    <property name="JAVA_HOME" value="/usr/lib/jvm/java-8-oracle"/>
+    <property name="build.src.dir" value="src"/>
+    <property name="build.classes.dir" value="classes"/>
+    <property name="build.dist.dir" value="dist"/>
 
-  <target name="default">
-    <taskdef resource="com/sun/javafx/tools/ant/antlib.xml"
-             uri="javafx:com.sun.javafx.tools.ant"
-             classpath=".:/usr/lib/jvm/java-8-oracle/lib/ant-javafx.jar"/>
-  </target>
+    <target name="default" depends="clean,compile">
 
-  <target name="clean">
-    <delete dir="${out.dir}"/>
-  </target>
+        <taskdef resource="com/sun/javafx/tools/ant/antlib.xml"
+                 uri="javafx:com.sun.javafx.tools.ant"
+                 classpath="${JAVA_HOME}/lib/ant-javafx.jar"/>
 
-  <target name="init" depends="clean">
-    <mkdir dir="${out.dir}"/>
-    <mkdir dir="${out.dir.classes}"/>
-    <mkdir dir="${out.dir.dist}"/>
-  </target>
+        <fx:application id="PokerFxID"
+                        name="JavaFXPokerApp"
+                        mainClass="com.asolod.test.poker.Main"/>
 
-  <target name="compile" depends="default, init">
-    <javac srcdir="${source.dir}" destdir="${out.dir}/classes" classpathref="classpath"
-           source="1.7"
-           target="1.7" />
-    <copy todir="${out.dir}/classes">
-      <fileset dir="${source.dir}">
-        <include name="**/*.png" />
-        <include name="**/*.fxml" />
-        <include name="**/*.css" />
-      </fileset>
-    </copy>
-  </target>
+        <fx:resources id="appRes">
+            <fx:fileset dir="${build.dist.dir}" includes="PokerFx.jar"/>
+        </fx:resources>
 
-  <target name="build" depends="compile">
-    <fx:application id="TesterFX" mainClass="com.asolod.test.poker.Main"/>
-    <fx:jar destfile="${out.dir.dist}/${app.jar.name}">
-      <fx:application refid="TesterFX"/>
+        <fx:jar destfile="${build.dist.dir}/PokerFx.jar">
+            <fx:application refid="PokerFxID"/>
+            <fx:resources refid="appRes"/>
+            <fileset dir="${build.classes.dir}"/>
+        </fx:jar>
 
-      <manifest>
-        <attribute name="Implementation-Vendor"
-                   value="Thierry"/>
-        <attribute name="Implementation-Title"
-                   value="TesterFX"/>
-        <attribute name="Implementation-Version" value="1.0"/>
-      </manifest>
+        <fx:deploy width="300" height="250"
+                   outdir="." embedJNLP="true"
+                   outfile="helloworld"
+                   nativebundles="all">
 
-      <fileset dir="${out.dir.classes}"/>
-    </fx:jar>
-  </target>
+            <fx:application refId="PokerFxID"/>
+
+            <fx:resources refid="appRes"/>
+
+            <fx:info title="JavaFX Hello World Application"
+                     vendor="Oracle Corporation"/>
+
+        </fx:deploy>
+
+    </target>
+
+    <target name="clean">
+        <mkdir dir="${build.classes.dir}"/>
+        <mkdir dir="${build.dist.dir}"/>
+
+        <delete>
+            <fileset dir="${build.classes.dir}" includes="**/*"/>
+            <fileset dir="${build.dist.dir}" includes="**/*"/>
+        </delete>
+
+    </target>
+
+    <target name="compile" depends="clean">
+
+        <javac includeantruntime="false"
+               srcdir="${build.src.dir}"
+               destdir="${build.classes.dir}"
+               fork="yes"
+               executable="${JAVA_HOME}/bin/javac"
+               source="1.8"
+               debug="on">
+        </javac>
+    </target>
+
 </project>

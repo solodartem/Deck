@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="testerfx" default="default" basedir="." xmlns:fx="javafx:com.sun.javafx.tools.ant">
+
+    <property name="java.home" value="/usr/lib/jvm/java-8-oracle"/>
+    <property name="source.dir" value="src"/>
+    <property name="out.dir" value="build"/>
+    <property name="out.dir.classes" value="${out.dir}/classes"/>
+    <property name="out.dir.dist" value="${out.dir}/dist"/>
+    <property name="app.jar.name" value="TesterFX.jar"/>
+
+    <path id="classpath">
+        <fileset dir="${java.home}/lib" includes="**/*.jar"/>
+    </path>
+
+    <target name="default">
+        <taskdef resource="com/sun/javafx/tools/ant/antlib.xml"
+                 uri="javafx:com.sun.javafx.tools.ant"
+                 classpath=".:/usr/lib/jvm/java-8-oracle/lib/ant-javafx.jar"/>
+    </target>
+
+    <target name="clean">
+        <delete dir="${out.dir}"/>
+    </target>
+
+    <target name="init" depends="clean">
+        <mkdir dir="${out.dir}"/>
+        <mkdir dir="${out.dir.classes}"/>
+        <mkdir dir="${out.dir.dist}"/>
+    </target>
+
+    <target name="compile" depends="default, init">
+        <javac srcdir="${source.dir}" destdir="${out.dir}/classes" classpathref="classpath"
+               source="1.7"
+               target="1.7"/>
+        <copy todir="${out.dir}/classes">
+            <fileset dir="${source.dir}">
+                <include name="**/*.png"/>
+                <include name="**/*.fxml"/>
+                <include name="**/*.css"/>
+            </fileset>
+        </copy>
+    </target>
+
+    <target name="build" depends="compile">
+        <fx:application id="PokerTest" mainClass="com.asolod.test.poker.Main"/>
+        <fx:jar destfile="${out.dir.dist}/${app.jar.name}">
+            <fx:application refid="PokerTest"/>
+
+            <manifest>
+                <attribute name="Implementation-Vendor"
+                           value="Solod Artem"/>
+                <attribute name="Implementation-Title"
+                           value="Poker Test"/>
+                <attribute name="Implementation-Version" value="1.0"/>
+            </manifest>
+
+            <fileset dir="${out.dir.classes}"/>
+        </fx:jar>
+    </target>
+
+    <target name="deploy" depends="compile">
+        <fx:application id="PokerTest" mainClass="com.asolod.test.poker.Main"/>
+        <fx:deploy width="300" height="250"
+                   outdir="." embedJNLP="true"
+                   outfile="helloworld"
+                   nativebundles="all">
+
+            <fx:application refId="PokerTest"/>
+
+            <!--
+                  <fx:resources refid="appRes"/>
+            -->
+
+            <fx:info title="Solod Artem JavaFX test application"
+                     vendor="Asolod"/>
+
+        </fx:deploy>
+    </target>
+</project>
