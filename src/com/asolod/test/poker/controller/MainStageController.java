@@ -32,9 +32,6 @@ public class MainStageController implements Initializable {
     @FXML
     private ImageView deck;
 
-    @FXML
-    protected Pane moveLayer;
-
     private ImageView[] cardSlots;
 
     @Override
@@ -42,7 +39,7 @@ public class MainStageController implements Initializable {
         this.cardSlots = new ImageView[]{cardSlot1, cardSlot2, cardSlot3, cardSlot4, cardSlot5};
     }
 
-    public void playCardAnimation() {
+    public void cardAnimationPlay() {
         new FiveCardMoveAnimation(this.deck, this.cardSlots, this.floor).play();
     }
 }

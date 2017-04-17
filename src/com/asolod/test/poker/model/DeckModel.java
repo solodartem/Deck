@@ -7,11 +7,11 @@ import java.util.*;
  */
 public class DeckModel {
 
+    public static final int POKER_DECK_SIZE = 54;
     private String[] suits = new String[]{"clubs", "diamonds", "hearts", "spades"};
     private String[] values = new String[]{"2", "3", "4", "5", "6", "7", "8", "9", "10", "jack", "queen", "king", "ace"};
 
     private LinkedList<String> cards;
-    private Random random = new Random();
 
     public DeckModel() {
         Set uniqueCards = new HashSet();
@@ -23,7 +23,8 @@ public class DeckModel {
 
         uniqueCards.add("red_joker");
         uniqueCards.add("black_joker");
-        if (uniqueCards.size() != 54) {
+
+        if (uniqueCards.size() != POKER_DECK_SIZE) {
             throw new RuntimeException("Wrong size of deck:" + this.cards.size());
         }
 
@@ -37,7 +38,7 @@ public class DeckModel {
 
     public static void main(String[] args) {
         DeckModel deckModel = new DeckModel();
-        for (int i = 0; i < 54; i++) {
+        for (int i = 0; i < POKER_DECK_SIZE; i++) {
             System.out.println(deckModel.popRandomCard());
         }
     }

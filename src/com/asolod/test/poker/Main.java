@@ -24,7 +24,7 @@ public class Main extends Application {
         primaryStage.addEventHandler(WindowEvent.WINDOW_SHOWN, new EventHandler<WindowEvent>() {
             @Override
             public void handle(WindowEvent window) {
-               loader.<MainStageController>getController().playCardAnimation();
+               loader.<MainStageController>getController().cardAnimationPlay();
             }
         });
 

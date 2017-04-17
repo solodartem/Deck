@@ -1,23 +1,20 @@
 package com.asolod.test.poker.animation;
 
 import javafx.animation.*;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.shape.Line;
 import javafx.scene.transform.Rotate;
 import javafx.util.Duration;
 
+import static com.asolod.test.poker.animation.FiveCardsAnimationConfig.CARD_BACK_URL;
+import static com.asolod.test.poker.animation.FiveCardsAnimationConfig.CARD_FACE_URL_TEMPLATE;
+import static com.asolod.test.poker.animation.FiveCardsAnimationConfig.DURATION;
+
 /**
  * Created by asolod on 16.04.17.
  */
 public class SingleCardMoveBuilder extends AbstractAnimationBuilder {
-
-    public static final String CARD_FACE_URL_TEMPLATE = "file:resources/../resources/img/%s.png";
-    public static final String CARD_BACK_URL = "file:resources/../resources/img/back_side.png";
-
-    public static final float DURATION = 2000;
 
     private ImageView deck;
     private ImageView cardSlot;
@@ -87,12 +84,7 @@ public class SingleCardMoveBuilder extends AbstractAnimationBuilder {
         flipCardBack.setAxis(Rotate.Y_AXIS);
         flipCardBack.setFromAngle(0.0);
         flipCardBack.setToAngle(90.0);
-        flipCardBack.setOnFinished(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                SingleCardMoveBuilder.this.node.setImage(loadCardFaceImage());
-            }
-        });
+        flipCardBack.setOnFinished(event -> SingleCardMoveBuilder.this.node.setImage(loadCardFaceImage()));
         return flipCardBack;
     }
 
@@ -103,12 +95,9 @@ public class SingleCardMoveBuilder extends AbstractAnimationBuilder {
         flipCardBack.setAxis(Rotate.Y_AXIS);
         flipCardBack.setFromAngle(90);
         flipCardBack.setToAngle(0);
-        flipCardBack.setOnFinished(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                SingleCardMoveBuilder.this.cardSlot.setImage(loadCardFaceImage());
-                SingleCardMoveBuilder.this.node.setImage(new Image(CARD_BACK_URL));
-            }
+        flipCardBack.setOnFinished(event -> {
+            SingleCardMoveBuilder.this.cardSlot.setImage(loadCardFaceImage());
+            SingleCardMoveBuilder.this.node.setImage(new Image(CARD_BACK_URL));
         });
         return flipCardBack;
     }
