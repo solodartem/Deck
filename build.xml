@@ -3,10 +3,10 @@
 <project name="JavaFX Hello World Example" default="default" basedir="."
          xmlns:fx="javafx:com.sun.javafx.tools.ant">
 
-    <property name="JAVA_HOME" value="/usr/lib/jvm/java-8-oracle"/>
+    <property name="JAVA_HOME" value="c:\Program Files\Java\jdk1.8.0_121\"/>
     <property name="build.src.dir" value="src"/>
-    <property name="build.classes.dir" value="classes"/>
-    <property name="build.dist.dir" value="dist"/>
+    <property name="build.classes.dir" value="build/classes"/>
+    <property name="build.dist.dir" value="build/dist"/>
 
     <target name="default" depends="clean,compile">
 
@@ -29,16 +29,16 @@
         </fx:jar>
 
         <fx:deploy width="300" height="250"
-                   outdir="." embedJNLP="true"
-                   outfile="helloworld"
+                   outdir="build" embedJNLP="true"
+                   outfile="pokerFX"
                    nativebundles="all">
 
             <fx:application refId="PokerFxID"/>
 
             <fx:resources refid="appRes"/>
 
-            <fx:info title="JavaFX Hello World Application"
-                     vendor="Oracle Corporation"/>
+            <fx:info title="Poker Game FX"
+                     vendor="Artem Solod"/>
 
         </fx:deploy>
 
@@ -65,6 +65,13 @@
                source="1.8"
                debug="on">
         </javac>
+        <copy todir="${build.classes.dir}/resources">
+            <fileset dir="resources"/>
+        </copy>
+        <copy todir="${build.classes.dir}">
+            <fileset dir="src"
+                     includes="**/*.fxml" />
+        </copy>
     </target>
 
 </project>

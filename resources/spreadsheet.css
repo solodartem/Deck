@@ -3,16 +3,16 @@
 }
 
 #pokerTable{
-    -fx-background-image: url("../resources/img/pokertable.png");
+    -fx-background-image: url("img/pokertable.png");
     -fx-background-repeat: stretch;
     -fx-background-position: center center;
     -fx-background-size: cover;
 }
 
 #deck {
-    -fx-image: url("../resources/img/back_side.png");
+    -fx-image: url("img/back_side.png");
 }
 .cardBack {
-    -fx-image: url("../resources/img/back_side.png");
+    -fx-image: url("img/back_side.png");
     -fx-background-repeat: stretch;
 }

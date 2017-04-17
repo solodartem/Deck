@@ -21,12 +21,7 @@ public class Main extends Application {
         root.getStylesheets().add("file:resources/spreadsheet.css");
 
 
-        primaryStage.addEventHandler(WindowEvent.WINDOW_SHOWN, new EventHandler<WindowEvent>() {
-            @Override
-            public void handle(WindowEvent window) {
-               loader.<MainStageController>getController().cardAnimationPlay();
-            }
-        });
+        primaryStage.addEventHandler(WindowEvent.WINDOW_SHOWN, window -> loader.<MainStageController>getController().cardAnimationPlay());
 
         primaryStage.show();
     }
