@@ -18,7 +18,7 @@ public class FiveCardMoveAnimation {
     private ImageView node;
     private DeckModel deckModel = new DeckModel();
 
-    public FiveCardMoveAnimation(ImageView deck, ImageView[] cardsSlots, Pane moveLayer) {
+    public FiveCardMoveAnimation(ImageView deck, ImageView[] cardsSlots, final Pane moveLayer) {
 
         iniNode(deck, moveLayer);
         for (ImageView cardSlot : cardsSlots) {

@@ -13,7 +13,7 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("floorLayout.fxml"));
+        final FXMLLoader loader = new FXMLLoader(getClass().getResource("floorLayout.fxml"));
         Parent root = loader.load();
 
         primaryStage.setTitle("Poker test");
