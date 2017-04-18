@@ -1,0 +1,45 @@
+<html><head>
+  <SCRIPT src="http://java.com/js/dtjava.js"></SCRIPT>
+<script>
+    function launchApplication(jnlpfile) {
+        dtjava.launch(            {
+                url : 'pokerFX.jnlp',
+                jnlp_content : 'PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4NCjxqbmxwIHNwZWM9IjEuMCIgeG1sbnM6amZ4PSJodHRwOi8vamF2YWZ4LmNvbSIgaHJlZj0icG9rZXJGWC5qbmxwIj4NCiAgPGluZm9ybWF0aW9uPg0KICAgIDx0aXRsZT5Qb2tlciBHYW1lIEZYPC90aXRsZT4NCiAgICA8dmVuZG9yPkFydGVtIFNvbG9kPC92ZW5kb3I+DQogICAgPGRlc2NyaXB0aW9uPkphdmFGWFBva2VyQXBwPC9kZXNjcmlwdGlvbj4NCiAgICA8b2ZmbGluZS1hbGxvd2VkLz4NCiAgPC9pbmZvcm1hdGlvbj4NCiAgPHJlc291cmNlcz4NCiAgICA8ajJzZSB2ZXJzaW9uPSIxLjYrIiBocmVmPSJodHRwOi8vamF2YS5zdW4uY29tL3Byb2R1Y3RzL2F1dG9kbC9qMnNlIi8+DQogICAgPGphciBocmVmPSJQb2tlckZ4LmphciIgc2l6ZT0iNTI0NjQ5MCIgZG93bmxvYWQ9ImVhZ2VyIiAvPg0KICA8L3Jlc291cmNlcz4NCiAgPGpmeDpqYXZhZngtZGVzYyAgd2lkdGg9IjMwMCIgaGVpZ2h0PSIyNTAiIG1haW4tY2xhc3M9ImNvbS5hc29sb2QudGVzdC5wb2tlci5NYWluIiAgbmFtZT0iSmF2YUZYUG9rZXJBcHAiIC8+DQogIDx1cGRhdGUgY2hlY2s9ImJhY2tncm91bmQiLz4NCjwvam5scD4NCg=='
+            },
+            {
+                javafx : '8.0+'
+            },
+            {}
+        );
+        return false;
+    }
+</script>
+
+<script>
+    function javafxEmbedPokerFxID() {
+        dtjava.embed(
+            {
+                id : 'PokerFxID',
+                url : 'pokerFX.jnlp',
+                placeholder : 'javafx-app-placeholder',
+                width : '300',
+                height : '250',
+                jnlp_content : 'PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4NCjxqbmxwIHNwZWM9IjEuMCIgeG1sbnM6amZ4PSJodHRwOi8vamF2YWZ4LmNvbSIgaHJlZj0icG9rZXJGWC5qbmxwIj4NCiAgPGluZm9ybWF0aW9uPg0KICAgIDx0aXRsZT5Qb2tlciBHYW1lIEZYPC90aXRsZT4NCiAgICA8dmVuZG9yPkFydGVtIFNvbG9kPC92ZW5kb3I+DQogICAgPGRlc2NyaXB0aW9uPkphdmFGWFBva2VyQXBwPC9kZXNjcmlwdGlvbj4NCiAgICA8b2ZmbGluZS1hbGxvd2VkLz4NCiAgPC9pbmZvcm1hdGlvbj4NCiAgPHJlc291cmNlcz4NCiAgICA8ajJzZSB2ZXJzaW9uPSIxLjYrIiBocmVmPSJodHRwOi8vamF2YS5zdW4uY29tL3Byb2R1Y3RzL2F1dG9kbC9qMnNlIi8+DQogICAgPGphciBocmVmPSJQb2tlckZ4LmphciIgc2l6ZT0iNTI0NjQ5MCIgZG93bmxvYWQ9ImVhZ2VyIiAvPg0KICA8L3Jlc291cmNlcz4NCiAgPGpmeDpqYXZhZngtZGVzYyAgd2lkdGg9IjMwMCIgaGVpZ2h0PSIyNTAiIG1haW4tY2xhc3M9ImNvbS5hc29sb2QudGVzdC5wb2tlci5NYWluIiAgbmFtZT0iSmF2YUZYUG9rZXJBcHAiIC8+DQogIDx1cGRhdGUgY2hlY2s9ImJhY2tncm91bmQiLz4NCjwvam5scD4NCg=='
+            },
+            {
+                javafx : '8.0+'
+            },
+            {}
+        );
+    }
+    <!-- Embed FX application into web page once page is loaded -->
+    dtjava.addOnloadCallback(javafxEmbedPokerFxID);
+</script>
+
+</head><body>
+<h2>Test page for <b>JavaFXPokerApp</b></h2>
+  <b>Webstart:</b> <a href='pokerFX.jnlp' onclick="return launchApplication('pokerFX.jnlp');">click to launch this app as webstart</a><br><hr><br>
+
+  <!-- Applet will be inserted here -->
+  <div id='javafx-app-placeholder'></div>
+</body></html>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<jnlp spec="1.0" xmlns:jfx="http://javafx.com" href="pokerFX.jnlp">
+  <information>
+    <title>Poker Game FX</title>
+    <vendor>Artem Solod</vendor>
+    <description>JavaFXPokerApp</description>
+    <offline-allowed/>
+  </information>
+  <resources>
+    <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
+    <jar href="PokerFx.jar" size="5246490" download="eager" />
+  </resources>
+  <jfx:javafx-desc  width="300" height="250" main-class="com.asolod.test.poker.Main"  name="JavaFXPokerApp" />
+  <update check="background"/>
+</jnlp>
